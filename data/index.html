@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TischTennis Server</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1>TischTennis Server</h1>
+    <!-- Toggle-Schalter für Liveanzeige -->
+    <label class="switch">
+      <input type="checkbox" id="toggleDisplay">
+      <span class="slider"></span>
+    </label>
+    <span id="toggleLabel">Anzeige inaktiv</span>
+  </header>
+  
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#" onclick="showSection('start')">Spiel starten</a></li>
+      <li><a href="#" onclick="showSection('gamelist')">Spielliste</a></li>
+      <li><a href="#" onclick="showSection('tierlist')">Tierlist</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Hauptbereich -->
+  <main>
+    <!-- Abschnitt: Spiel starten (zunächst Namenseingabe, danach Punkte) -->
+    <section id="start" class="section">
+      
+      <!-- Namenseingabe: Spieler1/Spieler2 -->
+      <div id="nameInputDiv">
+        <h2>Spiel starten: Namen eingeben</h2>
+        <form id="nameForm">
+          <label for="player1Input">Spieler 1:</label>
+          <input type="text" id="player1Input" placeholder="Name Spieler 1" required>
+          <br>
+          <label for="player2Input">Spieler 2:</label>
+          <input type="text" id="player2Input" placeholder="Name Spieler 2" required>
+          <br>
+          <button type="submit">Bestätigen</button>
+        </form>
+      </div>
+      
+      <!-- Punktanzeige (ausgeblendet bis Namen gesetzt) -->
+      <div id="scoreDiv" style="display: none;">
+        <h2 id="gameHeading">Spiel: </h2>
+        <div class="score-board">
+          <div class="player">
+            <h3 id="player1Name">Player1</h3>
+            <div class="score" id="score1">0</div>
+            <!-- Hier wird nun die Spieler-ID verwendet: 1 für Spieler1 -->
+            <button onclick="updateScore(1, 1)">+</button>
+            <button onclick="updateScore(1, -1)">-</button>
+          </div>
+          <div class="player">
+            <h3 id="player2Name">Player2</h3>
+            <div class="score" id="score2">0</div>
+            <!-- Spieler-ID 2 für Spieler2 -->
+            <button onclick="updateScore(2, 1)">+</button>
+            <button onclick="updateScore(2, -1)">-</button>
+          </div>
+        </div>
+        <button class="finish" onclick="finishGame()">Spiel beenden</button>
+      </div>
+    </section>
+    
+    <!-- Abschnitt: Spielliste -->
+    <section id="gamelist" class="section" style="display: none;">
+      <h2>Spielliste</h2>
+      <div id="gameHistory">
+        <!-- Hier wird die vom ESP32 geladene Spielliste angezeigt -->
+      </div>
+    </section>
+    
+    <!-- Abschnitt: Tierlist -->
+    <section id="tierlist" class="section" style="display: none;">
+      <h2>Tierlist</h2>
+      <div id="tierList">
+        <!-- Hier wird die Tierlist angezeigt -->
+      </div>
+    </section>
+  </main>
+  
+  <script src="/script.js"></script>
+</body>
+</html>
