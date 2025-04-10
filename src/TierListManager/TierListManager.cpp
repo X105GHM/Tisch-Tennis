@@ -17,7 +17,8 @@ void TierListManager::addPlayer(const std::string &name) {
     }
 }
 
-void TierListManager::updateStats(const std::string &winner, const std::string &loser) {
+void TierListManager::updateStats(const std::string &winner, const std::string &loser) 
+{
     {
         std::lock_guard<std::mutex> lock(mtx);
 
@@ -30,11 +31,7 @@ void TierListManager::updateStats(const std::string &winner, const std::string &
         playerStats[winner].wins++;
         playerStats[loser].losses++;
     }
-
-    // Logging außerhalb der mutex-section
-    // Logger::log(LoggerType::GAME, "TierList updated"); // Optional
 }
-
 
 std::vector<std::pair<std::string, PlayerStats>> TierListManager::getTierList() {
     std::lock_guard<std::mutex> lock(mtx);

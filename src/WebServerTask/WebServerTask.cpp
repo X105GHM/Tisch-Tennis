@@ -143,5 +143,5 @@ void WebServerTask::startTask(void *parameter) {
     server.begin();
     Logger::log(LoggerType::WEBSERVER, F("Web server started"));
 
-    vTaskDelete(NULL); // Task sauber beenden
+    vTaskDelete(NULL);
 }

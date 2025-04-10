@@ -11,11 +11,14 @@ struct PlayerStats {
 };
 class TierListManager {
 public:
+
     static TierListManager& getInstance();
     void addPlayer(const std::string &name);
     void updateStats(const std::string &winner, const std::string &loser);
     std::vector<std::pair<std::string, PlayerStats>> getTierList();
+    
 private:
+
     TierListManager();
     TierListManager(const TierListManager&) = delete;
     TierListManager& operator=(const TierListManager&) = delete;
